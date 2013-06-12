@@ -12,6 +12,8 @@ include_directories(
   ${GTEST_INCLUDE_DIRS}
   ${CPP-NETLIB_SOURCE_DIR})
 
+add_subdirectory(client/v2)
+
 if (OPENSSL_FOUND)
   include_directories( ${OPENSSL_INCLUDE_DIR} )
   add_definitions(-DNETWORK_ENABLE_HTTPS)
