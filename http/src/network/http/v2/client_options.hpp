@@ -26,6 +26,11 @@ namespace v2 {
     client_options(client_options const &) = default;
     client_options(client_options &&) = default;
 
+    client_options &operator = (client_options other) {
+      other.swap(*this);
+      return *this;
+    }
+
     void swap(client_options &other) noexcept {
       std::swap(follow_redirects_, other.follow_redirects_);
       std::swap(cache_resolved_, other.cache_resolved_);

@@ -38,5 +38,3 @@ TEST(client_options_test, set_option_use_proxy) {
   opts.use_proxy(true);
   ASSERT_TRUE(opts.use_proxy());
 }
-
-

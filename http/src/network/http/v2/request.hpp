@@ -7,6 +7,9 @@
 #define __NETWORK_HTTP_V2_REQUEST_INC__
 
 #include <cstdint>
+#include <memory>
+#include <network/uri.hpp>
+#include <network/http/v2/byte_source.hpp>
 
 namespace network {
 namespace http {
@@ -15,7 +18,26 @@ namespace v2 {
 
   public:
 
-    request() { }
+    request(uri locator, std::shared_ptr<byte_source> = nullptr)
+      : locator_(locator) { }
+
+    // destination
+    // source
+    // add_header
+    // remove_header
+    // clear_headers
+    // set_body
+    // append_body
+    // get_body
+
+    // method
+    // status
+    // status_message
+    // uri
+    // version
+
+    uri locator_;
+    std::shared_ptr<byte_source> source_;
 
   };
 } // namespace v2

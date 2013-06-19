@@ -25,6 +25,11 @@ namespace v2 {
     request_options(request_options const &) = default;
     request_options(request_options &&) = default;
 
+    request_options &operator = (request_options other) {
+      other.swap(*this);
+      return *this;
+    }
+
     void swap(request_options &other) noexcept {
       std::swap(resolve_timeout_, other.resolve_timeout_);
       std::swap(read_timeout_, other.read_timeout_);
