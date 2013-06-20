@@ -12,7 +12,7 @@ include_directories(
   ${GTEST_INCLUDE_DIRS}
   ${CPP-NETLIB_SOURCE_DIR})
 
-add_subdirectory(client/v2)
+add_subdirectory(v2)
 
 if (OPENSSL_FOUND)
   include_directories( ${OPENSSL_INCLUDE_DIR} )
