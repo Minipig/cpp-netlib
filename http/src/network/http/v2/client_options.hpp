@@ -8,6 +8,9 @@
 
 #include <cstdint>
 #include <algorithm>
+#include <string>
+#include <vector>
+#include <chrono>
 
 namespace network {
 namespace http {
@@ -17,7 +20,7 @@ namespace v2 {
   public:
 
     // default timeout is 30 seconds
-    constexpr client_options()
+    client_options()
       : follow_redirects_(false)
       , cache_resolved_(false)
       , use_proxy_(false)
@@ -36,6 +39,8 @@ namespace v2 {
       std::swap(cache_resolved_, other.cache_resolved_);
       std::swap(use_proxy_, other.use_proxy_);
       std::swap(timeout_, other.timeout_);
+      std::swap(openssl_certificate_paths_, other.openssl_certificate_paths_);
+      std::swap(openssl_verify_paths_, other.openssl_verify_paths_);
     }
 
     client_options &follow_redirects(bool follow_redirects) noexcept {
@@ -43,7 +48,7 @@ namespace v2 {
       return *this;
     }
 
-    constexpr bool follow_redirects() const noexcept {
+    bool follow_redirects() const noexcept {
       return follow_redirects_;
     }
 
@@ -52,7 +57,7 @@ namespace v2 {
       return *this;
     }
 
-    constexpr bool cache_resolved() const noexcept {
+    bool cache_resolved() const noexcept {
       return cache_resolved_;
     }
 
@@ -61,17 +66,25 @@ namespace v2 {
       return *this;
     }
 
-    constexpr bool use_proxy() const noexcept {
+    bool use_proxy() const noexcept {
       return use_proxy_;
     }
 
-    client_options &timeout(std::uint64_t timeout) noexcept {
+    client_options &timeout(std::chrono::milliseconds timeout) noexcept {
       timeout_ = timeout;
       return *this;
     }
 
-    constexpr std::uint64_t timeout() const noexcept {
+    std::chrono::milliseconds timeout() const noexcept {
       return timeout_;
+    }
+
+    std::vector<std::string> openssl_certificate_paths() const {
+      return openssl_certificate_paths_;
+    }
+
+    std::vector<std::string> openssl_verify_paths() const {
+      return openssl_verify_paths_;
     }
 
   private:
@@ -79,7 +92,9 @@ namespace v2 {
     bool follow_redirects_;
     bool cache_resolved_;
     bool use_proxy_;
-    std::uint64_t timeout_;
+    std::chrono::milliseconds timeout_;
+    std::vector<std::string> openssl_certificate_paths_;
+    std::vector<std::string> openssl_verify_paths_;
 
   };
 } // namespace v2

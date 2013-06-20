@@ -21,6 +21,16 @@ TEST(client_options_test, default_options_use_proxy) {
   ASSERT_FALSE(opts.use_proxy());
 }
 
+TEST(client_options, default_options_openssl_certificate_paths) {
+  network::http::v2::client_options opts;
+  ASSERT_TRUE(opts.openssl_certificate_paths().empty());
+}
+
+TEST(client_options, default_options_openssl_verify_paths) {
+  network::http::v2::client_options opts;
+  ASSERT_TRUE(opts.openssl_verify_paths().empty());
+}
+
 TEST(client_options_test, set_option_follow_redirects) {
   network::http::v2::client_options opts;
   opts.follow_redirects(true);
