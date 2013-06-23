@@ -1,4 +1,4 @@
-// Copyright 2010 Dean Michael Berris. 
+// Copyright 2010 Dean Michael Berris.
 // Copyright 2012 Google, Inc.
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE_1_0.txt or copy at
@@ -7,7 +7,6 @@
 #ifndef NETWORK_PROTOCOL_HTTP_MESSAGE_DIRECTIVES_MINOR_VERSION_HPP_20101120
 #define NETWORK_PROTOCOL_HTTP_MESSAGE_DIRECTIVES_MINOR_VERSION_HPP_20101120
 
-#include <network/protocol/http/support/is_server.hpp>
 #include <boost/utility/enable_if.hpp>
 #include <boost/cstdint.hpp>
 
