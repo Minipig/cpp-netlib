@@ -8,7 +8,6 @@
 #ifndef NETWORK_MESSAGE_HPP_20111021
 #define NETWORK_MESSAGE_HPP_20111021
 
-#include <network/message_fwd.hpp>
 #include <network/detail/directive_base.hpp>
 #include <network/detail/wrapper_base.hpp>
 #include <network/message/directives.hpp>
