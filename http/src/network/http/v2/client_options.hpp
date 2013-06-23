@@ -79,8 +79,18 @@ namespace v2 {
       return timeout_;
     }
 
+    client_options &openssl_certificate_path(std::string path) {
+      openssl_certificate_paths_.emplace_back(std::move(path));
+      return *this;
+    }
+
     std::vector<std::string> openssl_certificate_paths() const {
       return openssl_certificate_paths_;
+    }
+
+    client_options &openssl_verify_path(std::string path) {
+      openssl_verify_paths_.emplace_back(std::move(path));
+      return *this;
     }
 
     std::vector<std::string> openssl_verify_paths() const {

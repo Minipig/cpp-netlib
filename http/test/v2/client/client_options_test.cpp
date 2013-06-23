@@ -48,3 +48,15 @@ TEST(client_options_test, set_option_use_proxy) {
   opts.use_proxy(true);
   ASSERT_TRUE(opts.use_proxy());
 }
+
+TEST(client_options_test, set_option_openssl_certificate_path) {
+  network::http::v2::client_options opts;
+  opts.openssl_certificate_path("openssl_certificate");
+  ASSERT_EQ(std::vector<std::string>{"openssl_certificate"}, opts.openssl_certificate_paths());
+}
+
+TEST(client_options_test, set_option_openssl_verify_path) {
+  network::http::v2::client_options opts;
+  opts.openssl_verify_path("openssl_verify");
+  ASSERT_EQ(std::vector<std::string>{"openssl_verify"}, opts.openssl_verify_paths());
+}

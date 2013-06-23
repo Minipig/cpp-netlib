@@ -27,3 +27,5 @@ foreach(test ${CPP-NETLIB_CLIENT_TESTS})
     ${CPP-NETLIB_BINARY_DIR}/tests/cpp-netlib-http-v2-${test})
 
 endforeach(test)
+
+add_subdirectory(client)

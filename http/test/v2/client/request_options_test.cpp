@@ -26,3 +26,9 @@ TEST(request_options_test, set_resolve_timeout) {
   opts.resolve_timeout(10000);
   ASSERT_EQ(10000, opts.resolve_timeout());
 }
+
+TEST(request_options_test, set_max_redirects) {
+  network::http::v2::request_options opts;
+  opts.max_redirects(5);
+  ASSERT_EQ(5, opts.max_redirects());
+}

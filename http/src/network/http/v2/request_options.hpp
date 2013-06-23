@@ -20,7 +20,8 @@ namespace v2 {
     constexpr request_options()
       : resolve_timeout_(30000)
       , read_timeout_(30000)
-      , total_timeout_(30000) { }
+      , total_timeout_(30000)
+      , max_redirects_(10) { }
 
     request_options(request_options const &) = default;
     request_options(request_options &&) = default;
@@ -63,11 +64,21 @@ namespace v2 {
       return total_timeout_;
     }
 
+    request_options &max_redirects(int max_redirects) noexcept {
+      max_redirects_ = max_redirects;
+      return *this;
+    }
+
+    constexpr int max_redirects() const noexcept {
+      return max_redirects_;
+    }
+
   private:
 
     std::uint64_t resolve_timeout_;
     std::uint64_t read_timeout_;
     std::uint64_t total_timeout_;
+    int max_redirects_;
 
   };
 } // namespace v2
