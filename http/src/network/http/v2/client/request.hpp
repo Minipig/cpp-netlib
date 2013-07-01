@@ -9,7 +9,7 @@
 #include <cstdint>
 #include <memory>
 #include <network/uri.hpp>
-#include <network/http/v2/byte_source.hpp>
+#include <network/http/v2/client/byte_source.hpp>
 
 namespace network {
 namespace http {

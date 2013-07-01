@@ -4,7 +4,7 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 
 #include <gtest/gtest.h>
-#include <network/http/v2/request.hpp>
+#include <network/http/v2/client/request.hpp>
 
 TEST(request_test, request_constructor_url) {
   ASSERT_NO_THROW(network::http::v2::request(network::uri("http://www.example.com/")));

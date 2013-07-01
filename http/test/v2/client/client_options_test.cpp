@@ -4,7 +4,7 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 
 #include <gtest/gtest.h>
-#include <network/http/v2/client_options.hpp>
+#include <network/http/v2/client/client_options.hpp>
 
 TEST(client_options_test, default_options_follow_redirects) {
   network::http::v2::client_options opts;

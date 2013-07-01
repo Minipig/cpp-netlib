@@ -4,7 +4,7 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 
 #include <gtest/gtest.h>
-#include <network/http/v2/request_options.hpp>
+#include <network/http/v2/client/request_options.hpp>
 
 TEST(request_options_test, default_options_resolve_timeout) {
   network::http::v2::request_options opts;
