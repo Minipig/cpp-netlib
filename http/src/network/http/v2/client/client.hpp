@@ -9,19 +9,19 @@
 #include <cstdint>
 
 namespace network {
-namespace http {
-namespace v2 {
-  class client {
+  namespace http {
+    namespace v2 {
+      class client {
 
-  public:
+      public:
 
-    client() { }
-    client(client const &) = delete;
-    client(client &&) = delete;
+	client() { }
+	client(client const &) = delete;
+	client(client &&) = delete;
 
-  };
-} // namespace v2
-} // namespace http
+      };
+    } // namespace v2
+  } // namespace http
 } // namespace network
 
 #endif // __NETWORK_HTTP_V2_CLIENT_INC__

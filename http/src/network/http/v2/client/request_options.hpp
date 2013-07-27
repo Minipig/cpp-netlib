@@ -10,79 +10,79 @@
 #include <algorithm>
 
 namespace network {
-namespace http {
-namespace v2 {
-  class request_options {
+  namespace http {
+    namespace v2 {
+      class request_options {
 
-  public:
+      public:
 
-    // default timeout is 30 seconds
-    constexpr request_options()
-      : resolve_timeout_(30000)
-      , read_timeout_(30000)
-      , total_timeout_(30000)
-      , max_redirects_(10) { }
+	// default timeout is 30 seconds
+	constexpr request_options()
+	  : resolve_timeout_(30000)
+	  , read_timeout_(30000)
+	  , total_timeout_(30000)
+	  , max_redirects_(10) { }
 
-    request_options(request_options const &) = default;
-    request_options(request_options &&) = default;
+	request_options(request_options const &) = default;
+	request_options(request_options &&) = default;
 
-    request_options &operator = (request_options other) {
-      other.swap(*this);
-      return *this;
-    }
+	request_options &operator = (request_options other) {
+	  other.swap(*this);
+	  return *this;
+	}
 
-    void swap(request_options &other) noexcept {
-      std::swap(resolve_timeout_, other.resolve_timeout_);
-      std::swap(read_timeout_, other.read_timeout_);
-      std::swap(total_timeout_, other.total_timeout_);
-    }
+	void swap(request_options &other) noexcept {
+	  std::swap(resolve_timeout_, other.resolve_timeout_);
+	  std::swap(read_timeout_, other.read_timeout_);
+	  std::swap(total_timeout_, other.total_timeout_);
+	}
 
-    request_options &resolve_timeout(std::uint64_t resolve_timeout) noexcept {
-      resolve_timeout_ = resolve_timeout;
-      return *this;
-    }
+	request_options &resolve_timeout(std::uint64_t resolve_timeout) noexcept {
+	  resolve_timeout_ = resolve_timeout;
+	  return *this;
+	}
 
-    constexpr std::uint64_t resolve_timeout() const noexcept {
-      return resolve_timeout_;
-    }
+	constexpr std::uint64_t resolve_timeout() const noexcept {
+	  return resolve_timeout_;
+	}
 
-    request_options &read_timeout(std::uint64_t read_timeout) noexcept {
-      read_timeout_ = read_timeout;
-      return *this;
-    }
+	request_options &read_timeout(std::uint64_t read_timeout) noexcept {
+	  read_timeout_ = read_timeout;
+	  return *this;
+	}
 
-    constexpr std::uint64_t read_timeout() const noexcept {
-      return read_timeout_;
-    }
+	constexpr std::uint64_t read_timeout() const noexcept {
+	  return read_timeout_;
+	}
 
-    request_options &total_timeout(std::uint64_t total_timeout) noexcept {
-      total_timeout_ = total_timeout;
-      return *this;
-    }
+	request_options &total_timeout(std::uint64_t total_timeout) noexcept {
+	  total_timeout_ = total_timeout;
+	  return *this;
+	}
 
-    constexpr std::uint64_t total_timeout() const noexcept {
-      return total_timeout_;
-    }
+	constexpr std::uint64_t total_timeout() const noexcept {
+	  return total_timeout_;
+	}
 
-    request_options &max_redirects(int max_redirects) noexcept {
-      max_redirects_ = max_redirects;
-      return *this;
-    }
+	request_options &max_redirects(int max_redirects) noexcept {
+	  max_redirects_ = max_redirects;
+	  return *this;
+	}
 
-    constexpr int max_redirects() const noexcept {
-      return max_redirects_;
-    }
+	constexpr int max_redirects() const noexcept {
+	  return max_redirects_;
+	}
 
-  private:
+      private:
 
-    std::uint64_t resolve_timeout_;
-    std::uint64_t read_timeout_;
-    std::uint64_t total_timeout_;
-    int max_redirects_;
+	std::uint64_t resolve_timeout_;
+	std::uint64_t read_timeout_;
+	std::uint64_t total_timeout_;
+	int max_redirects_;
 
-  };
-} // namespace v2
-} // namespace http
+      };
+    } // namespace v2
+  } // namespace http
 } // namespace network
 
 #endif // __NETWORK_HTTP_V2_REQUEST_OPTIONS_INC__

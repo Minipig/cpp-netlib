@@ -13,6 +13,7 @@
 
 namespace network {
   namespace http {
+    namespace v2 {
     class message_base {
 
     public:
@@ -21,11 +22,8 @@ namespace network {
       typedef string_type::size_type size_type;
 
       message_base() NETWORK_DEFAULTED_FUNCTION;
-
       message_base(const message_base &) NETWORK_DELETED_FUNCTION;
-
       message_base &operator = (const message_base &) NETWORK_DELETED_FUNCTION;
-
       virtual ~message_base() NETWORK_NOEXCEPT = 0;
 
       // Mutators
@@ -48,7 +46,8 @@ namespace network {
 			size_type size) = 0;
 
     };
-  } // namespace v2
+    } // namespace v2
+  } // namespace http
 } // namespace network
 
 

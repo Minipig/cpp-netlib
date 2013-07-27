@@ -12,38 +12,38 @@
 #include <boost/utility/string_ref.hpp>
 
 namespace network {
-namespace http {
-namespace v2 {
+  namespace http {
+    namespace v2 {
 
-  class response;
-  class request;
-  class request_options;
+      class response;
+      class request;
+      class request_options;
 
-  class connection {
+      class connection {
 
-  public:
+      public:
 
-    typedef std::function<void (boost::string_ref, boost::system::error_code)> callback_type;
+	typedef std::function<void (boost::string_ref, boost::system::error_code)> callback_type;
 
-    connection() = default;
+	connection() = default;
 
-    connection(const connection &) = delete;
+	connection(const connection &) = delete;
 
-    connection &operator = (const connection &) = delete;
+	connection &operator = (const connection &) = delete;
 
-    virtual connection() = default;
+	virtual connection() = default;
 
-    virtual response send_request(std::string method,
-				  request req,
-				  bool get_body,
-				  callback_type callback,
-				  request_options) = 0;
+	virtual response send_request(std::string method,
+				      request req,
+				      bool get_body,
+				      callback_type callback,
+				      request_options) = 0;
 
-    virtual void reset() = 0;
+	virtual void reset() = 0;
 
-  };
-} // namespace v2
-} // namespace http
+      };
+    } // namespace v2
+  } // namespace http
 } // namespace network
 
 
