@@ -9,50 +9,50 @@
 // methods
 TEST(constants_test, get)
 {
-  ASSERT_EQ("GET", network::http::v2::get());
+  ASSERT_EQ("GET", network::http::v2::methods::get());
 }
 
 TEST(constants_test, post)
 {
-  ASSERT_EQ("POST", network::http::v2::post());
+  ASSERT_EQ("POST", network::http::v2::methods::post());
 }
 
 TEST(constants_test, put)
 {
-  ASSERT_EQ("PUT", network::http::v2::put());
+  ASSERT_EQ("PUT", network::http::v2::methods::put());
 }
 
 TEST(constants_test, delete_)
 {
-  ASSERT_EQ("DELETE", network::http::v2::delete_());
+  ASSERT_EQ("DELETE", network::http::v2::methods::delete_());
 }
 
 TEST(constants_test, head)
 {
-  ASSERT_EQ("HEAD", network::http::v2::head());
+  ASSERT_EQ("HEAD", network::http::v2::methods::head());
 }
 
 TEST(constants_test, options)
 {
-  ASSERT_EQ("OPTIONS", network::http::v2::options());
+  ASSERT_EQ("OPTIONS", network::http::v2::methods::options());
 }
 
 TEST(constants_test, trace)
 {
-  ASSERT_EQ("TRACE", network::http::v2::trace());
+  ASSERT_EQ("TRACE", network::http::v2::methods::trace());
 }
 
 TEST(constants_test, connect)
 {
-  ASSERT_EQ("CONNECT", network::http::v2::connect());
+  ASSERT_EQ("CONNECT", network::http::v2::methods::connect());
 }
 
 TEST(constants_test, merge)
 {
-  ASSERT_EQ("MERGE", network::http::v2::merge());
+  ASSERT_EQ("MERGE", network::http::v2::methods::merge());
 }
 
 TEST(constants_test, patch)
 {
-  ASSERT_EQ("PATCH", network::http::v2::patch());
+  ASSERT_EQ("PATCH", network::http::v2::methods::patch());
 }
