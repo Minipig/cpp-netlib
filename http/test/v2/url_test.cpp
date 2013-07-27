@@ -6,8 +6,21 @@
 #include <gtest/gtest.h>
 #include <network/http/v2/url.hpp>
 
+namespace http = network::http::v2;
+
 TEST(url_test, url_constructor) {
-  network::http::v2::url instance;
+  http::url instance;
   ASSERT_TRUE(instance.empty());
 }
 
+TEST(url_test, construct_url_from_char_array) {
+  ASSERT_NO_THROW(http::url("http://www.example.com/"));
+}
+
+TEST(url_test, construct_https_url_from_char_array) {
+  ASSERT_NO_THROW(http::url("https://www.example.com/"));
+}
+
+TEST(url_test, construct_shttp_url_from_char_array) {
+  ASSERT_NO_THROW(http::url("shttp://www.example.com/"));
+}

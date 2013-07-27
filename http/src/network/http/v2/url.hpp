@@ -3,22 +3,22 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef __TTP_NETWORK_HTTP_V2_URL_INC__
-#define __HTTP_NETWORK_HTTP_V2_URL_INC__
+#ifndef __NETWORK_HTTP_V2_URL_INC__
+#define __NETWORK_HTTP_V2_URL_INC__
 
 #include <network/uri.hpp>
+#include <boost/range/algorithm/equal.hpp>
+#include <boost/range/as_literal.hpp>
 
 namespace network {
   namespace http {
     namespace v2 {
-      class invalid_scheme : public std::runtime_error {
+      class scheme_not_http : public std::runtime_error {
 
       public:
 
-	virtual ~invalid_scheme() noexcept {}
-	virtual const char *what() const noexcept {
-	  return "invalid_scheme";
-	}
+	scheme_not_http() : std::runtime_error("scheme_not_http") {}
+	virtual ~scheme_not_http() noexcept {}
 
       };
 
@@ -34,19 +34,25 @@ namespace network {
 
       public:
 
-	url() {
+	url() {	}
 
+	template <class Source>
+	url(const Source &source)
+	  : uri_(source) {
+	  if (auto scheme_ = uri_.scheme()) {
+	    if (!boost::equal(boost::as_literal("http"), *scheme_) &&
+		!boost::equal(boost::as_literal("https"), *scheme_) &&
+		!boost::equal(boost::as_literal("shttp"), *scheme_)) {
+	      throw scheme_not_http();
+	    }
+	  }
 	}
 
 	url(const url &other)
-	  : uri_(other.uri_) {
+	  : uri_(other.uri_) { }
 
-	}
-
-	url(url &&other)
-	  : uri_(other.uri_) {
-
-	}
+	url(url &&other) noexcept
+	: uri_(std::move(other.uri_)) { }
 
 	url &operator = (url other) {
 	  other.swap(*this);
@@ -65,12 +71,69 @@ namespace network {
 	  return uri_.end();
 	}
 
+	boost::optional<string_view> user_info() const {
+	  return uri_.user_info();
+	}
+
+	boost::optional<string_view> host() const {
+	  return uri_.host();
+	}
+
+	boost::optional<string_view> port() const {
+	  return uri_.port();
+	}
+
+	boost::optional<string_view> path() const {
+	  return uri_.path();
+	}
+
+	boost::optional<string_view> query() const {
+	  return uri_.query();
+	}
+
+	boost::optional<string_view> fragment() const {
+	  return uri_.fragment();
+	}
+
+	boost::optional<string_view> authority() const {
+	  return uri_.authority();
+	}
+
+	std::string string() const {
+	  return uri_.string();
+	}
+
 	bool empty() const noexcept {
 	  return uri_.empty();
 	}
 
 	bool is_absolute() const noexcept {
 	  return uri_.is_absolute();
+	}
+
+	url normalize(uri_comparison_level level) const {
+	  return url(uri_.normalize(level));
+	  // if scheme-specific
+	  //   normalize query arguments in alphanumeric order
+	}
+
+	url make_reference(const url &other, uri_comparison_level level) const {
+	  return url(uri_.make_reference(other.uri_, level));
+	}
+
+	url resolve(const url &other, uri_comparison_level level) const {
+	  return url(uri_.resolve(other.uri_, level));
+	}
+
+	int compare(const url &other, uri_comparison_level level) const noexcept {
+	  int result = uri_.compare(other.uri_, level);
+	  // if result == 0 and scheme-specific
+	  //   compare query arguments
+	  return result;
+	}
+
+	uri to_uri() const {
+	  return uri_;
 	}
 
       private:
@@ -82,5 +145,4 @@ namespace network {
   } // namespace http
 } // namespace network
 
-
-#endif // __HTTP_NETWORK_HTTP_V2_URL_INC__
+#endif // __NETWORK_HTTP_V2_URL_INC__
