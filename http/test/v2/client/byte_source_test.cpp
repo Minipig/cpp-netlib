@@ -4,6 +4,6 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 
 #include <gtest/gtest.h>
-#include <network/http/v2/client/byte_source.hpp>
+#include <network/http/v2/client/request.hpp>
 
 

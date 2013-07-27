@@ -8,6 +8,7 @@
 
 
 include_directories(
+  ${CPP-NETLIB_SOURCE_DIR}/config/src
   ${CPP-NETLIB_SOURCE_DIR}/uri/src
   ${CPP-NETLIB_SOURCE_DIR}/message/src
   ${CPP-NETLIB_SOURCE_DIR}/logging/src
