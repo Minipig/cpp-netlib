@@ -220,7 +220,7 @@ namespace network {
 	}
 
 	inline
-	constexpr int request_uri_too_large() {
+	constexpr int request_uri_too_long() {
 	  return 414;
 	}
 

@@ -8,6 +8,8 @@
 
 #include <network/config.hpp>
 #include <network/uri.hpp>
+#include <network/http/v2/headers.hpp>
+#include <boost/utility/string_ref.hpp>
 #include <string>
 #include <functional>
 
@@ -18,8 +20,9 @@ namespace network {
 
     public:
 
-      typedef std::string string_type;
+      typedef headers::string_type string_type;
       typedef string_type::size_type size_type;
+      typedef boost::string_ref string_view;
 
       message_base() NETWORK_DEFAULTED_FUNCTION;
       message_base(const message_base &) NETWORK_DELETED_FUNCTION;
@@ -36,14 +39,15 @@ namespace network {
       virtual void append_body(std::string data) = 0;
 
       // Accessors
-      virtual string_type destination() const = 0;
-      virtual string_type source() = 0;
-      virtual string_type headers(std::function<void (string_type, string_type)> inserter) const = 0;
-      virtual string_type headers(std::function<bool (string_type, string_type)> predicate,
-				  std::function<void (string_type, string_type)> inserter) const = 0;
-      virtual string_type body() const = 0;
-      virtual void body(std::function<void (string_type::const_iterator, size_type)> chunk_reader,
-			size_type size) = 0;
+      virtual string_type get_destination() const = 0;
+      virtual string_type get_source() = 0;
+      virtual void get_headers(std::function<void (string_type, string_type)> inserter) const = 0;
+      virtual void get_headers(std::function<bool (string_type, string_type)> predicate,
+			   std::function<void (string_type, string_type)> inserter) const = 0;
+      virtual header get_header(std::string header) = 0;
+      virtual string_type get_body() const = 0;
+      //virtual void get_body(std::function<void (string_type::const_iterator, size_type)> chunk_reader,
+      //			    size_type size) const = 0;
 
     };
     } // namespace v2

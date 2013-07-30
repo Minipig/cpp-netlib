@@ -38,7 +38,7 @@ static std::unordered_map<int, std::string> status_message_map() {
   status_messages[411] = "Length Required";
   status_messages[412] = "Precondition Failed";
   status_messages[413] = "Request Entity Too Large";
-  status_messages[414] = "Request Uri Too Large";
+  status_messages[414] = "Request Uri Too Long";
   status_messages[415] = "Unsupported Media Type";
   status_messages[416] = "Request Range Not Satisfiable";
   status_messages[417] = "Expectation Failed";
